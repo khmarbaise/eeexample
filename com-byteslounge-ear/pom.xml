@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.byteslounge.ear.main</groupId>
+    <artifactId>com-byteslounge-ear-main</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <groupId>com.byteslounge.ear</groupId>
+  <artifactId>com-byteslounge-ear</artifactId>
+  <packaging>ear</packaging>
+
+  <name>com-byteslounge: EAR</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-ear-plugin</artifactId>
+        <configuration>
+          <defaultLibBundleDir>lib</defaultLibBundleDir>
+          <generateModuleId>false</generateModuleId>
+          <modules>
+            <webModule>
+              <groupId>com.byteslounge.war</groupId>
+              <artifactId>com-byteslounge-war</artifactId>
+              <bundleFileName>com-byteslounge.war</bundleFileName>
+              <contextRoot>/byteslounge</contextRoot>
+            </webModule>
+            <ejbModule>
+              <groupId>com.byteslounge.ejb</groupId>
+              <artifactId>com-byteslounge-ejb</artifactId>
+              <bundleFileName>com-byteslounge.jar</bundleFileName>
+            </ejbModule>
+          </modules>
+          <displayName>My Ear Name displayed in the App Server</displayName>
+          <!-- If I want maven to generate the application.xml, set this to true -->
+          <generateApplicationXml>true</generateApplicationXml>
+          <version>6</version>
+        </configuration>
+      </plugin>
+    </plugins>
+    <finalName>com-byteslounge</finalName>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.byteslounge.war</groupId>
+      <artifactId>com-byteslounge-war</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>com.byteslounge.ejb</groupId>
+      <artifactId>com-byteslounge-ejb</artifactId>
+      <version>${project.version}</version>
+      <type>ejb</type>
+    </dependency>
+  </dependencies>
+
+
+</project>
